@@ -22,7 +22,13 @@
 点击“写作日历”，可查看每一天是否已写日记。蓝色标记为已写，点击可查看日记内容；红色为漏写，点击可添加日记。
 ![image](https://github.com/1332508387/diary-boot/blob/master/src/main/resources/upload/2018-03-14_142734.png)
 ### 统计图
+主页柱形图统计从开始写日记到当前日期，漏写和已写的天数；饼状图统计所有已写日记的心情比例(添加日记时所选心情)，清楚的反映出自己的状态。
+![image](https://github.com/1332508387/diary-boot/blob/master/src/main/resources/upload/2018-03-14_143117.png)
 ### 时间轴
+时间轴将按时间顺序显示，"等级" >= 3(添加日记时所选的星星数量)的日记，可以清楚的看到那一天经历了那件重要的事。
+![image](https://github.com/1332508387/diary-boot/blob/master/src/main/resources/upload/2018-03-14_143700.png)
 ### 异常记录管理
+记录程序中遇到的刻骨铭心的Exception，以及解决方案。
+![image](https://github.com/1332508387/diary-boot/blob/master/src/main/resources/upload/2018-03-14_144148.png)
 ## 其他
 日记信息使用DES加密后存入数据库
