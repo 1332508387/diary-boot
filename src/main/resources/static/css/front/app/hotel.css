@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+body{background: url(../../../img/front/app/bg.png) no-repeat top center!important;}
+.index .hotel-logo{height:500px;width:1800px;display: table-cell;vertical-align: middle;text-align: center;}
+.index .hotel-des {text-align: center;}
+.index .hotel-des {font-size: 25px;line-height:40px;color: #fff!important;margin-bottom: 40px;}

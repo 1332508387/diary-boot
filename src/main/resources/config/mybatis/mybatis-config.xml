@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 打印SQL语句到控制台 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 配置驼峰自动映射：开启此选项，可以解决数据库表中字段与实体类属性名称不一致问题
+            例如：字段 user_id 对应 userId，开启此选项后，mybatis 将会把 user_id 转化为 userId，可实现自动分装结果集
+         -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 关闭 mybatis 二级缓存总开关 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+</configuration>

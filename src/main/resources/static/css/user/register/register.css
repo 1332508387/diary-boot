@@ -1,0 +1,86 @@
+
+@keyframes cc{
+    0%{opacity: 0.4;transform: scale(0.1) ;top: -500px;}
+    50%{opacity: 0.4;transform: scale(0.1) rotateX(90deg);top: -50px;}
+    100%{opacity: 1;transform: scale(1) rotateX(0deg);top: 0;}
+}
+@media only screen and (max-width: 500px) {
+    .login{
+        width: 95%!important;
+    }
+    .sr{
+        padding:30px 70px!important;
+    }
+}
+html,body{
+    height:100%;
+    width:100%;
+    background: url(/img/user/login/login-background.jpg) no-repeat center center;
+    background-size:1920px 1000px;
+    perspective:500px;
+}
+*{
+    font-family:'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+}
+.login{
+    width:450px;
+    position: relative;
+    top: 0;
+    margin: 10% auto;
+    background:rgba(255,255,255,1);
+    border-radius: 10px;
+    color: #27d;
+    animation: cc 1.5s ease-in-out ;
+}
+.login header{
+
+    padding: 10px;
+    border-bottom: 1px solid #27d;
+}
+.login header h1{
+    margin:0;
+    padding:0;
+    text-align: center;
+    font-size: 25px;
+    line-height: 40px;
+}
+.sr{
+    padding:30px 90px;
+}
+.name{
+    position:relative;
+    margin-bottom:20px;
+    clear:both;
+    border:1px solid #27d;
+    width: 100%;
+    height: 40px;
+}
+.name label{
+    position: absolute;
+    color: #27d;
+    top: 10px;
+    left: 10px;
+}
+.name_inp{
+    padding-left: 34px;
+    height: 38px;
+    line-height: 38px;
+    line-height: 36px\9;
+    border: none;
+    background-color: #fff;
+    width:100%;
+    outline:none;
+}
+.dl{
+    /*width:150px;*/
+    width:100%;
+    height:40px;
+    background:#27d;
+    line-height:40px;
+    display:block;
+    margin:0 auto;
+    color:#fff;
+    border:0;
+    font-size:18px;
+}
+

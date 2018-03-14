@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lh.diary.mapper.UserMapper">
+	<resultMap type="User" id="RM" autoMapping="true">
+		<id column="id" property="id"/>
+	</resultMap>
+
+	<select id="listUser" resultMap="RM">
+		SELECT * FROM tb_user
+		WHERE status = 0
+		<if test="key != null and value != null">
+			AND ${key} = #{value}
+		</if>
+		ORDER BY updated DESC
+		LIMIT #{pageIndex}, #{pageSize}
+	</select>
+
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM tb_user
+		WHERE status = 0
+		<if test="key != null and value != null">
+			AND ${key} = #{value}
+		</if>
+	</select>
+</mapper>

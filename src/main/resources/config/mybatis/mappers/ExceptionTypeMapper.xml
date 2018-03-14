@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lh.diary.mapper.ExceptionTypeMapper">
+
+	<resultMap id="exceptionTypeRM" type="ExceptionType" autoMapping="true">
+		<id column="id" property="id"/>
+	</resultMap>
+
+	<select id="listExceptionTypeByUserId" resultMap="exceptionTypeRM">
+		SELECT id, name
+		FROM tb_exception_type
+		WHERE user_id = #{userId}
+		<if test="erId != null and erId != ''">
+			AND id != (
+				SELECT exception_type_id
+				FROM tb_exception_record
+				WHERE id = #{erId}
+			)
+		</if>
+	</select>
+
+</mapper>

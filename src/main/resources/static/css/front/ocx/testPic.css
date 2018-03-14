@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+.index .container {padding-bottom: 50px;}
+.index .container .hw-body {position:relative; height: 300px; font-size:20px; margin-top:30px;}
+.index .container .hw-body .hw-title{height: 20px; font-size:20px;}
+.index .container .hw-body .hw-left {position:absolute; top:40px; left:0px; width:300px; height:300px;}
+.index .container .hw-body .hw-middle {margin:40px 350px 0px 350px; height:100%;}
+.inputButton{width:100px; height:30px; background:url("../../../img/front/ocx/btn-bg.jpg") repeat-x left top; color:#8bf8ff; padding-bottom:18px;}
+.index .container .hw-body .hw-right {position:absolute; top:40px; right:0px; width:300px; height:300px;}
+
+.index .container .ys-body {position:relative; height: 410px; font-size:20px; margin-top:80px;}
+.index .container .ys-body .ys-title {height: 20px; font-size:20px;}
+.index .container .ys-body .ys-video {position:absolute; top:40px; left:0px;}
+.index .container .ys-body .ys-info {margin:100px 200px 0px 550px;}
+.index .container .ys-body .ys-btn {margin:30px 200px 0px 550px;}

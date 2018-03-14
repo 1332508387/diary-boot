@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lh.diary.mapper.DiaryMapper">
+	<resultMap id="diaryRM" type="Diary">
+		<id column="id" property="id"/>
+	</resultMap>
+	
+	<select id="listDiary" resultMap="diaryRM">
+		SELECT 	id,
+		user_id,
+		status,
+		write_date,
+		is_lock,
+		IF(is_lock = 1, NULL, mood_id) 		AS mood_id,
+		IF(is_lock = 1, NULL, keyword) 		AS keyword,
+		IF(is_lock = 1, NULL, site) 		AS site,
+		IF(is_lock = 1, NULL, remark) 		AS remark,
+		/*IF(is_lock = 1, NULL, created) 		AS created,
+		IF(is_lock = 1, NULL, updated) 		AS updated*/
+		score,
+		created,
+		updated
+		FROM tb_diary
+		WHERE status >= 0
+		<if test="user.type != 0">
+			AND user_id = #{user.id}
+		</if>
+		<if test="diaryPage.moodId != null and diaryPage.moodId != 0">
+			AND mood_id = #{diaryPage.moodId}
+		</if>
+		<if test="diaryPage.startTime != null and diaryPage.startTime != ''">
+			AND write_date > #{diaryPage.startTime}
+		</if>
+		<if test="diaryPage.endTime != null and diaryPage.endTime != ''">
+			AND write_date &lt; #{diaryPage.endTime}
+		</if>
+		ORDER BY write_date DESC
+		LIMIT #{diaryPage.pageIndex}, #{diaryPage.pageSize}
+	</select>
+
+	<select id="getDiaryByScore" resultMap="diaryRM">
+		SELECT id,
+		user_id,
+		status,
+		write_date,
+		is_lock,
+		IF(is_lock = 1, NULL, mood_id) 		AS mood_id,
+		IF(is_lock = 1, NULL, keyword) 		AS keyword,
+		IF(is_lock = 1, NULL, site) 		AS site,
+		IF(is_lock = 1, NULL, remark) 		AS remark,
+		/*IF(is_lock = 1, NULL, created) 		AS created,
+		IF(is_lock = 1, NULL, updated) 		AS updated*/
+		score,
+		created,
+		updated
+		FROM tb_diary
+		WHERE user_id = #{uId} AND status != -1 AND score >= 3
+		ORDER BY write_date DESC
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*)
+		FROM tb_diary
+		WHERE status >= 0
+		<if test="user.type != 0">
+			AND user_id = #{user.id}
+		</if>
+		<if test="diaryPage.moodId != null and diaryPage.moodId != 0">
+			AND mood_id = #{diaryPage.moodId}
+		</if>
+		<if test="diaryPage.startTime != null and diaryPage.startTime != ''">
+			AND write_date > #{diaryPage.startTime}
+		</if>
+		<if test="diaryPage.endTime != null and diaryPage.endTime != ''">
+			AND write_date &lt; #{diaryPage.endTime}
+		</if>
+	</select>
+
+	<insert id="saveDiary" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tb_diary(
+			user_id,
+			mood_id,
+			write_date,
+			keyword,
+			site,
+			remark,
+			status,
+			is_lock,
+			created,
+			updated
+		)
+		VALUES (
+			#{userId},
+			#{moodId},
+			#{writeDate},
+			#{keyword},
+			#{site},
+			#{remark},
+			#{status},
+			#{isLock},
+			#{created},
+			#{updated}
+		)
+	</insert>
+
+	<update id="updateDiary">
+		UPDATE tb_diary
+		<set>
+			<if test="moodId != null">
+				mood_id = #{moodId},
+			</if>
+			<if test="writeDate != null">
+			  	write_date = #{writeDate},
+			</if>
+			<if test="keyword != null">
+				keyword = #{keyword},
+			</if>
+			<if test="site != null">
+				site = #{site},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="isLock != null">
+				is_lock = #{isLock},
+			</if>
+			<if test="created != null">
+				created = #{created},
+			</if>
+			<if test="updated != null">
+				updated = #{updated}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+</mapper>

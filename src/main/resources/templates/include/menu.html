@@ -1,0 +1,38 @@
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+	  <!--xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"-->
+	  <!--layout:decorate="layout">-->
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+	<!-- fa fa-user: style can be found in sidebar.less -->
+	<section class="sidebar">
+		<!-- Sidebar user panel 菜单用户信息 -->
+		<!-- search form -->
+		<!-- /.search form -->
+		<!-- sidebar menu: : style can be found in sidebar.less -->
+		<ul class="sidebar-menu">
+			<li class="header">系统菜单</li>
+			<li class="treeview">
+				<a th:href="@{/home}"> <i class="glyphicon glyphicon-home"></i><span>主页</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/calendar}"> <i class="glyphicon glyphicon-calendar"></i><span>写作日历</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/diary}"> <i class="glyphicon glyphicon-book"></i><span>日记管理</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/mood}"> <i class="glyphicon glyphicon-heart"></i><span>心情管理</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/user}"> <i class="glyphicon glyphicon-user"></i><span>用户管理</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/exception_record}"> <i class="glyphicon glyphicon-list-alt"></i><span>异常记录管理</span></a>
+			</li>
+			<li class="treeview">
+				<a th:href="@{/timeline}"> <i class="glyphicon glyphicon-list-alt"></i><span>时间轴</span></a>
+			</li>
+		</ul>
+	</section>
+	<!-- /.sidebar -->
+</aside>

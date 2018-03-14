@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lh.diary.mapper.ExceptionRecordMapper">
+
+	<resultMap id="exceptionRecordRM" type="ExceptionRecord" autoMapping="true">
+		<id column="er_id" property="id"/>
+		<collection property="exceptionTypes" ofType="ExceptionType">
+			<id column="et_id" property="id"/>
+			<result column="et_name" property="name"/>
+		</collection>
+	</resultMap>
+
+	<select id="listExceptionRecord" resultMap="exceptionRecordRM">
+		<!--SELECT t1.id, t1.exception_info, t1.exception_type_id, t1.remark,
+				t1.created, t1.updated, t2.name AS exception_type_name
+		FROM(
+			SELECT id, exception_info, exception_type_id, remark, created, updated
+			FROM tb_exception_record
+			WHERE user_id = #{userId}
+			<if test="exceptionTypeId != null and exceptionTypeId != ''">
+				AND exception_type_id = #{exceptionTypeId}
+			</if>
+			LIMIT #{pageIndex}, #{pageSize}
+		) AS t1
+		LEFT JOIN(
+			SELECT id, name
+			FROM tb_exception_type
+			WHERE user_id = #{userId}
+		) AS t2
+		ON t1.exception_type_id = t2.id
+		ORDER BY updated DESC-->
+		<!--SELECT
+			er.id AS er_id,
+			er.user_id,
+			er.exception_info,
+			er.remark,
+			er.created,
+			er.updated,
+			et.id AS et_id,
+			et.name AS et_name,
+			et.updated AS et_updated
+		FROM(
+			SELECT id, user_id, exception_info, remark, created, updated
+			FROM tb_exception_record
+			WHERE user_id = #{userId}
+		) AS er
+		LEFT JOIN
+		tb_exception_record_type AS ert
+		ON er.id = ert.er_id
+		LEFT JOIN(
+			SELECT id, user_id, name, updated
+			FROM tb_exception_type
+			WHERE user_id = #{userId}
+		) AS et
+		ON ert.et_id = et.id
+		<if test="keywords != null and keywords != ''">
+			AND et.name IN
+			<foreach collection="keywords" open="(" separator="," close=")" item="keyword">
+				#{keyword}
+			</foreach>
+		</if>
+		ORDER BY er.updated DESC, et_updated
+		LIMIT #{pageIndex}, #{pageSize}-->
+		<!--SELECT
+			er.id AS er_id,
+			er.exception_info,
+			er.remark,
+			er.created,
+			er.updated,
+			et.id AS et_id,
+			et.name AS et_name,
+			et.updated AS et_updated
+		FROM tb_exception_record as er
+		LEFT JOIN tb_exception_record_type AS ert
+		ON er.id = ert.er_id
+		LEFT JOIN tb_exception_type AS et
+		ON ert.et_id = et.id
+		WHERE  er.user_id = #{userId}
+		<if test="keywords != null and keywords != ''">
+			AND EXISTS(
+				SELECT DISTINCT(key_ert.er_id)
+				FROM tb_exception_record_type AS key_ert
+				LEFT JOIN(
+					SELECT key_et.id
+					FROM tb_exception_type AS key_et
+					WHERE key_et.user_id = #{userId} AND key_et.name IN
+					<foreach collection="keywords" open="(" separator="," close=")" item="keyword">
+						#{keyword}
+					</foreach>
+				) AS key_tids
+				ON key_ert.er_id = key_tids.id
+				WHERE er.id = key_ert.er_id
+			)
+		</if>
+		ORDER BY er.updated DESC, et.updated
+		LIMIT #{pageIndex}, #{pageSize}-->
+		SELECT
+			er.id AS er_id,
+			er.exception_info,
+			er.remark,
+			er.created,
+			er.updated,
+			et.id AS et_id,
+			et.name AS et_name,
+			et.updated AS et_updated
+		FROM tb_exception_record as er
+		LEFT JOIN tb_exception_record_type AS ert ON er.id = ert.er_id
+		LEFT JOIN tb_exception_type AS et  ON ert.et_id = et.id
+		WHERE  er.user_id = #{userId}
+		<if test="keywords != null and keywords.size > 0">
+			AND EXISTS(
+				SELECT DISTINCT(key_ert.er_id)
+				FROM tb_exception_record_type AS key_ert
+				WHERE er.id = key_ert.er_id AND key_ert.et_id IN
+				<foreach collection="keywords" open="(" separator="," close=")" item="keyword">
+					#{keyword}
+				</foreach>
+			)
+		</if>
+		ORDER BY er.updated DESC, et.updated
+		LIMIT #{pageIndex}, #{pageSize}
+	</select>
+
+	<select id="countByUserId" resultType="int">
+		SELECT COUNT(DISTINCT(er.id))
+		FROM tb_exception_record as er
+		LEFT JOIN tb_exception_record_type AS ert ON er.id = ert.er_id
+		LEFT JOIN tb_exception_type AS et  ON ert.et_id = et.id
+		WHERE  er.user_id = #{userId}
+		<if test="keywords != null and keywords.size > 0">
+			AND EXISTS(
+				SELECT DISTINCT(key_ert.er_id)
+				FROM tb_exception_record_type AS key_ert
+				WHERE er.id = key_ert.er_id AND key_ert.et_id IN
+				<foreach collection="keywords" open="(" separator="," close=")" item="keyword">
+					#{keyword}
+				</foreach>
+			)
+		</if>
+	</select>
+
+</mapper>

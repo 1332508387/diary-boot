@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* 首页 */
+
+/* 素材 */
+.index .tab-icon {display: inline-block;width: 32px;height: 32px;background: url(../../../img/front/index/index_tab.png) 0 -35px no-repeat;line-height: 32px;}
+.index .tab1 .tab-icon {height: 33px;}
+.index .tab2 .tab-icon {background-position: -33px -35px;}
+.index .tab3 .tab-icon {width: 33px;background-position: -66px -35px;}
+.index .tab4 .tab-icon {background-position: -102px -35px;}
+.index .tab5 .tab-icon {background-position: -138px -35px;}
+.index .mod-tab.show-tab1 .tab1 .tab-icon {background-position: 0 0;}
+.index .mod-tab.show-tab2 .tab2 .tab-icon {background-position: -33px 0;}
+.index .mod-tab.show-tab3 .tab3 .tab-icon {background-position: -66px 0;}
+.index .mod-tab.show-tab4 .tab4 .tab-icon {background-position: -102px 0;}
+.index .mod-tab.show-tab5 .tab5 .tab-icon {background-position: -138px 0;}
+
+
+.index .banner {height: 480px;background: url(../../../img/front/index/banner.jpg) 50% 50% no-repeat;position: relative;margin-bottom: 50px;}
+.index .banner .btn-wrap {position: absolute;width: 100%;top: 50%;margin-top: 124px;text-align: center;}
+.index .banner .btn-try {width: 180px;height: 58px;line-height: 58px;background: #FFF;display: inline-block;font-size: 18px;color: #333;}/* modified by erwinxiong */
+
+.index .container {padding-bottom: 50px;}
+.index .index-title,
+.index .index-des {text-align: center;}
+.index .index-des {font-size: 16px;color: #666;margin-bottom: 55px;}
+.index .index-title {font-size: 32px;}
+.index .index-title .title-wrap span {display: inline-block;line-height: 38px;padding: 0 30px;border-left: 1px solid #BBB;margin-left: -1px;}
+.index .index-title .title-wrap {display: inline-block;overflow: hidden;}
+
+.index .trustsql_time {background: url(../../../img/front/index/trustsql_time.jpg?t=20170316) 50% 0 no-repeat;height: 620px;}
+/*.index .bg-white .index-title {padding-top: 55px;margin-bottom: 8px;font-size: 40px;}
+.index .bg-white .index-des {font-size: 18px;}*/
+
