@@ -3,7 +3,7 @@
 [开发环境](#开发环境)  
 [主要技术](#主要技术)  
 [功能介绍](#功能介绍)  
-&nbsp;&nbsp;&nbsp;&nbsp;[日记管理](#日记管理)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日记管理](#日记管理)  
 &nbsp;&nbsp;&nbsp;&nbsp;[写作日历](#写作日历)  
 &nbsp;&nbsp;&nbsp;&nbsp;[统计图](#统计图)  
 &nbsp;&nbsp;&nbsp;&nbsp;[时间轴](#时间轴)  
