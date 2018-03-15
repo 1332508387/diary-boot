@@ -130,6 +130,13 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!-- Thymeleaf 使用 Shiro 标签 -->
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
         <!-- Google 图片压缩工具 -->
         <dependency>
             <groupId>net.coobird</groupId>

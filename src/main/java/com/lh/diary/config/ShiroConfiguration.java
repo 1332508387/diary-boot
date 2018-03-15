@@ -1,5 +1,6 @@
 package com.lh.diary.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.lh.diary.config.shiro.AuthCredential;
 import com.lh.diary.config.shiro.AuthRealm;
 import org.apache.shiro.mgt.SecurityManager;
@@ -93,4 +94,11 @@ public class ShiroConfiguration {
         return authorizationAttributeSourceAdvisor;
     }
 
+    /**
+     * Thymeleaf 使用 Shiro 标签配置
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
 }
