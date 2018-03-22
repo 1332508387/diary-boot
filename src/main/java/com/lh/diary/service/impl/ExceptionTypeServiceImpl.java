@@ -4,6 +4,7 @@ import com.lh.diary.mapper.ExceptionTypeMapper;
 import com.lh.diary.pojo.ExceptionType;
 import com.lh.diary.service.ExceptionTypeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,11 +22,13 @@ public class ExceptionTypeServiceImpl implements ExceptionTypeService {
         return  exceptionTypes;
     }
 
+    @Transactional
     @Override
     public void saveExceptionType(ExceptionType exceptionType) {
         this.exceptionTypeMapper.insertSelective(exceptionType);
     }
 
+    @Transactional
     @Override
     public void removeExceptioTypeById(long id) {
         this.exceptionTypeMapper.deleteByPrimaryKey(id);

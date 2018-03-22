@@ -6,6 +6,7 @@ import com.lh.diary.pojo.MoodPage;
 import com.lh.diary.service.MoodService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class MoodServiceImpl implements MoodService {
         return this.moodMapper.count(moodPage);
     }
 
+    @Transactional
     @RequiresRoles({"role:0"})
     @Override
     public void saveMood(Mood mood) {
@@ -39,6 +41,7 @@ public class MoodServiceImpl implements MoodService {
         this.moodMapper.insertSelective(mood);
     }
 
+    @Transactional
     @RequiresRoles({"role:0"})
     @Override
     public void updateMood(Mood mood) {
@@ -46,6 +49,7 @@ public class MoodServiceImpl implements MoodService {
         this.moodMapper.updateByPrimaryKeySelective(mood);
     }
 
+    @Transactional
     @RequiresRoles({"role:0"})
     @Override
     public void removeMoodById(Long moodId) {

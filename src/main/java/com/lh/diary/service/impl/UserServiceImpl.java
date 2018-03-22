@@ -8,6 +8,7 @@ import com.lh.diary.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     protected UserMapper userMapper;
 
+    @Transactional
     //@RequiresRoles({"role:0"})
     @Override
     public void saveUser(User user) {
@@ -51,6 +53,7 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Transactional
     @RequiresRoles({"role:0"})
     @Override
     public void removeUserById(Long userId) {
@@ -61,6 +64,7 @@ public class UserServiceImpl implements UserService {
         this.userMapper.updateByPrimaryKeySelective(user);
     }
 
+    @Transactional
     @RequiresRoles({"role:0"})
     @Override
     public SysResult saveAdminUser(User user) {
