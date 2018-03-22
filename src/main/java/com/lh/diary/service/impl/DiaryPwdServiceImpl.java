@@ -9,6 +9,7 @@ import com.lh.diary.pojo.DiaryPwd;
 import com.lh.diary.service.DiaryPwdService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -35,6 +36,7 @@ public class DiaryPwdServiceImpl implements DiaryPwdService {
         return SysResult.build(1, "用户已设置日记密码");
     }
 
+    @Transactional
     @Override
     public SysResult updateDiaryPwd(DiaryPwd diaryPwd, String oldPwd) {
         if(!StringUtils.isNotEmpty(oldPwd)){
@@ -65,6 +67,7 @@ public class DiaryPwdServiceImpl implements DiaryPwdService {
         return SysResult.ok();
     }
 
+    @Transactional
     @Override
     public void saveDiaryPwd(DiaryPwd diaryPwd) {
         diaryPwd.setCreated(new Date());
