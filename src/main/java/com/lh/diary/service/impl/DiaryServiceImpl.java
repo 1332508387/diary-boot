@@ -12,6 +12,7 @@ import com.lh.diary.pojo.User;
 import com.lh.diary.service.DiaryService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class DiaryServiceImpl implements DiaryService {
     @Resource
     private DiaryContentMapper diaryContentMapper;
 
+    @Transactional
     @Override
     public SysResult saveDiary(Diary diary, DiaryContent content) {
         /*// 0 - 正常
@@ -96,11 +98,13 @@ public class DiaryServiceImpl implements DiaryService {
         return diaryList;
     }
 
+    @Transactional
     @Override
     public void removeDiary(Long diaryId) {
         this.diaryMapper.updateDiaryStatus(diaryId, -1);
     }
 
+    @Transactional
     @Override
     public void updateDiary(Diary diary, DiaryContent content) {
         diary.setUpdated(new Date());
