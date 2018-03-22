@@ -7,6 +7,7 @@ import com.lh.diary.pojo.ExceptionType;
 import com.lh.diary.service.ExceptionRecordService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -28,10 +29,12 @@ public class ExceptionRecordServiceImpl implements ExceptionRecordService {
         return this.exceptionRecordMapper.countByUserId(userId,keywords);
     }
 
+    @Transactional
     public void saveERIdAndETId(Long exceptionRecordId, Long exceptionTypeId) {
         this.exceptionRecordMapper.saveERIdAndETId(exceptionRecordId, exceptionTypeId);
     }
 
+    @Transactional
     public void saveExceptionRecord(ExceptionRecord exceptionRecord, String[] exceptionTypeIds) {
         // 保存异常信息
         exceptionRecord.setCreated(new Date());
@@ -62,6 +65,7 @@ public class ExceptionRecordServiceImpl implements ExceptionRecordService {
         }
     }
 
+    @Transactional
     public void updateExceptionRecord(ExceptionRecord exceptionRecord, String[] exceptionTypeIds) {
         // 更新异常信息
         exceptionRecord.setUpdated(new Date());
@@ -93,6 +97,7 @@ public class ExceptionRecordServiceImpl implements ExceptionRecordService {
 
     }
 
+    @Transactional
     @Override
     public void removeExceptionRecordById(Long id) {
         this.exceptionRecordMapper.deleteByPrimaryKey(id);
