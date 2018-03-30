@@ -47,7 +47,7 @@ public class UserController {
 
         try {
             this.userService.saveUser(user);
-            return SysResult.ok();
+            return SysResult.build(200, "注册成功，请登陆");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,7 +55,13 @@ public class UserController {
     }
 
     @PostMapping("/doLogin")
-    public SysResult doLogin(User user, HttpSession session, HttpServletRequest request) {
+    public SysResult doLogin(String verifyCode, User user, HttpSession session, HttpServletRequest request) {
+        String srcVerifyCode = (String) (session.getAttribute(KaptchaController.KAPTCHA_VERIFY_CODE));
+        if (!StringUtils.equals(verifyCode, srcVerifyCode)) {
+            session.invalidate();
+            return SysResult.build(201, "验证码错误");
+        }
+
         SysResult result = null;
 
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
@@ -70,7 +76,7 @@ public class UserController {
             session.setAttribute("currentUser", realUser);
             result = SysResult.ok();
         } catch (UnknownAccountException e) {
-            result.build(201, "用户不存在");
+            result = result.build(201, "用户不存在");
         } catch (IncorrectCredentialsException e) {
            result = SysResult.build(201, "用户名或密码错误");
         }

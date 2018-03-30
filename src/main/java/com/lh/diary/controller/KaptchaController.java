@@ -24,6 +24,8 @@ import java.util.Random;
 @RequestMapping("/code")
 @Controller
 public class KaptchaController {
+	public static final String KAPTCHA_VERIFY_CODE = "KAPTCHA_VERIFY_CODE";
+
 	@Resource
 	private Producer captchaProducer;
 
@@ -38,7 +40,7 @@ public class KaptchaController {
 		//Cookie cookie = new Cookie(Constants.KAPTCHA_SESSION_KEY, capText); // 生成cookie
 		//cookie.setMaxAge(300); // 300秒生存期
 		//response.addCookie(cookie); // 将cookie加入response
-		request.getSession().setAttribute("KAPTCHA_VERIFY_CODE", capText);
+		request.getSession().setAttribute(KAPTCHA_VERIFY_CODE, capText);
 		BufferedImage bi = captchaProducer.createImage(capText);// 生成验证码图片
 		ServletOutputStream out = response.getOutputStream();
 		ImageIO.write(bi, "jpg", out);

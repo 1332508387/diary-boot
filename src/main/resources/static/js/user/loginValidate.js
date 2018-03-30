@@ -25,7 +25,7 @@ $(function() {
 						message : '请输入密码'
 					}
 				}
-			}/*,
+			},
             verifyCode : {
 				message : '验证码验证失败',
 				validators : {
@@ -44,7 +44,7 @@ $(function() {
                         message : '请输入四位'
                     }
 				}
-			}*/
+			}
 		}
 	});
 	$("#login1").click(function() {

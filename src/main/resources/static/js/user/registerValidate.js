@@ -94,9 +94,13 @@ $(function() {
 			type : "POST",
 			data : $("#registerFrom").serialize(),
 			success : function(result) {
-				if (result.status == 200)
-					location.href = path + "/login";
-				if (result.status != 200){
+				if (result.status == 200) {
+					setMsg(result.msg)
+                    setTimeout(function () {
+                        location.href = path + "/login";
+                    }, 3000);
+                }
+                if (result.status != 200){
 					$('#registerFrom')[0].reset();
                     setVerify();
                     setMsg(result.msg);
