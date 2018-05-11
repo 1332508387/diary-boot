@@ -23,11 +23,12 @@ public class KaptchaConfiguration {
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
         properties.setProperty("kaptcha.image.width", "80");
         properties.setProperty("kaptcha.image.height", "30");
-        properties.setProperty("kaptcha.textproducer.font.size", "27");
+        properties.setProperty("kaptcha.textproducer.font.size", "25");
         properties.setProperty("kaptcha.session.key", "KAPTCHA_VERIFY_CODE");
         properties.setProperty("kaptcha.textproducer.char.length", "4");
         properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
-        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
+//        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
+        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.ShadowGimpy");
         properties.setProperty("kaptcha.noise.color", "red");
         properties.setProperty("kaptcha.noise.impl", "com.google.code.kaptcha.impl.NoNoise");
         properties.setProperty("kaptcha.background.clear.from", "white");
